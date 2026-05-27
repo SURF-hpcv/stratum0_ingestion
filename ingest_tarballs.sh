@@ -23,7 +23,7 @@ IFS=$'\n\t'         # sane field splitting
 # -------------------- Configuration -------------------------
 BUCKET="surf_hpcv_casparl_software_test"
 DOWNLOAD_DIR="/data/cvmfs_s0_storage/staged_tarballs"
-REPO_NAME="software.casparl.nl"
+REPO_NAME="software.caspar.nl"
 ARCHIVE_PREFIX="archive"
 BASEDIR="versions"
 # This ingest script also takes care of creating the `.cvmfscatalog` files if you have a .cvmfsdirtab configured
