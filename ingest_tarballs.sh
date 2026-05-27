@@ -26,6 +26,8 @@ DOWNLOAD_DIR="/data/cvmfs_s0_storage/staged_tarballs"
 REPO_NAME="software.casparl.nl"
 ARCHIVE_PREFIX="archive"
 BASEDIR="versions"
+# This ingest script also takes care of creating the `.cvmfscatalog` files if you have a .cvmfsdirtab configured
+INGEST_SCRIPT="filesystem-layer/scripts/ingest-tarball.sh"
 
 # Ensure the download directory exists
 mkdir -p "${DOWNLOAD_DIR}"
@@ -92,7 +94,7 @@ for key in "${tar_keys[@]}"; do
 
     # ---- Ingest into CVMFS ----
     echo "Ingesting into CVMFS (${REPO_NAME})..."
-    if zstd -c -d "${local_tar}" | cvmfs_server ingest --tar_file - --base_dir "${BASEDIR}" "${REPO_NAME}"; then
+    if $INGEST_SCRIPT "${REPO_NAME}" "${local_tar}"; then
         echo "Ingest succeeded for ${filename}."
     else
         echo "ERROR: cvmfs_server ingest failed for ${filename}." >&2
