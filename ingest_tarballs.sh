@@ -1,3 +1,4 @@
+#!/bin/bash
 
 set -euo pipefail               # strict mode
 IFS=$'\n\t'                     # sane field splitting
